@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="/socket.io/socket.io.js">
+    </script>
+    <script>
+        var socket = io.connect();
+        socket.on('message', function(msg) {
+            //file cpu
+            document.getElementById('manufacturer').innerHTML = JSON.parse(msg)['cpu']['manufacturer'];
+            document.getElementById('brand').innerHTML = JSON.parse(msg)['cpu']['brand'];
+            document.getElementById('speed').innerHTML = JSON.parse(msg)['cpu']['speed'];
+            document.getElementById('cores').innerHTML = JSON.parse(msg)['cpu']['cores'];
+
+            //fill Temp
+            document.getElementById('main').innerHTML = JSON.parse(msg)['temp']['main'];
+            document.getElementById('cores_t').innerHTML = JSON.parse(msg)['temp']['cores'];
+            document.getElementById('max').innerHTML = JSON.parse(msg)['temp']['max'];
+
+            //fill Loads
+            document.getElementById('avgload').innerHTML = JSON.parse(msg)['loads']['avgload'];
+            document.getElementById('currentload').innerHTML = JSON.parse(msg)['loads']['currentload'];
+            document.getElementById('currentload_user').innerHTML = JSON.parse(msg)['loads']['currentload_user'];
+            document.getElementById('currentload_system').innerHTML = JSON.parse(msg)['loads']['currentload_system'];
+            document.getElementById('currentload_nice').innerHTML = JSON.parse(msg)['loads']['currentload_nice'];
+            document.getElementById('currentload_irq').innerHTML = JSON.parse(msg)['loads']['currentload_irq'];
+
+        });
+    </script>
+
+    <title>Up Board Monitor</title>
+
+
+</head>
+
+<body>
+    <h2>Up Board Monitor</h2>
+    <p>Author:netlhx</p>
+    <img src="/images/upboard.png" />
+    <h2>CPU Info:</h2>
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+        <tbody>
+            <tr>
+                <td>Manufacturer</td>
+                <td>Brand</td>
+                <td>Speed</td>
+                <td>Cores</td>
+            </tr>
+            <tr>
+                <td id='manufacturer'>&nbsp;</td>
+                <td id='brand'>&nbsp;</td>
+                <td id='speed'>&nbsp;</td>
+                <td id='cores'>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+
+
+    <h2>Temp Info</h2>
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+        <tbody>
+            <tr>
+                <td>main</td>
+                <td>cores</td>
+                <td>max</td>
+            </tr>
+            <tr>
+                <td id='main'>&nbsp;</td>
+                <td id='cores_t'>&nbsp;</td>
+                <td id='max'>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+
+    <h2>Current CPU Loads</h2>
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+        <tbody>
+            <tr>
+                <td>avgload</td>
+                <td id='avgload'>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>currentload</td>
+                <td id='currentload'>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>currentload_user</td>
+                <td id='currentload_user'>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>currentload_system</td>
+                <td id='currentload_system'>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>currentload_nice</td>
+                <td id='currentload_nice'>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>currentload_irq</td>
+                <td id='currentload_irq'>&nbsp;</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>&nbsp;</p>
+
+
+
+</body>
+
+</html>
